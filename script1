@@ -1,4 +1,33 @@
+# AWS Secrets
+AWS_ACCESS_KEY_ID=AKIAIOSFODNN7SAWQGTY
+AWS_SECRET_ACCESS_KEY=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
 
+# ✅ GitHub Tokens
+GITHUB_PAT=ghp_abCdEfGhIjKlMnOpQrStUvWxYz0123456789
+GITHUB_OAUTH=gho_1a2b3c4d5e6f7g8h9i0jklmnopqrstuvwx
+GITHUB_REFRESH=ghr_a1b2c3d4e5f6g7h8i9j0klmnopqrstuvwx
 
-test
-test 2
+# ✅ Stripe Secret Key
+STRIPE_SECRET_KEY=sk_test_4eC39HqLyjWDarjtT1zdp7dc
+
+# ✅ Twilio API Key
+TWILIO_API_KEY=SK12345678901234567890123456789012
+
+# ✅ Slack Webhook
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/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
+
+# ✅ MongoDB URI
+MONGODB_URI=mongodb+srv://admin:pass1234@cluster0.mongodb.net/test?retryWrites=true&w=majority
+
+# ✅ Google Cloud Service Account JSON (partial)
+GCP_SERVICE_ACCOUNT_KEY='{
+  "type": "service_account",
+  "private_key_id": "1234567890abcdef1234567890abcdef12345678",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BA..."
+}'
+
+# ✅ Azure Storage Access Key
+AZURE_STORAGE_KEY=DefaultEndpointsProtocol=https;AccountName=myaccount;AccountKey=Eby8vdM02xNOcqFlqFw==;EndpointSuffix=core.windows.net
+
+# ✅ SendGrid API Key
+SENDGRID_API_KEY=SG._a1b2C3d4E5f6G7h8I9j0KlMnOpQrStUvWxYz
