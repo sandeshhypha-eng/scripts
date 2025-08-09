@@ -1,0 +1,28 @@
+name: SSH to EC2 and Run Script
+
+on:
+  workflow_dispatch: # Trigger manually
+
+jobs:
+  run-script-on-ec2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup SSH key
+        run: |
+          cd /home/runner
+          mkdir git-code
+          cd git-code
+          git clone https://github.com/sandeshhypha-eng/scripts.git
+          chmod 400 scripts/dev-ec2.pem
+          ls -lrth
+          pwd
+
+      - name: SSH to EC2 and run script
+        run: |
+          ssh -i /home/runner/git-code/scripts/dev-ec2.pem -o StrictHostKeyChecking=no ec2-user@43.204.38.237 << 'EOF'
+          chmod +x /home/ec2-user/scripts/dir.sh
+          # Execute the script
+          sh /home/ec2-user/scripts/dir.sh
+          ls
+          EOF
