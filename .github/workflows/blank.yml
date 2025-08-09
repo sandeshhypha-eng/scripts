@@ -20,8 +20,6 @@ jobs:
 
       - name: SSH to EC2 and run script
         run: |
-          ls -lrth
-          pwd
           ssh -i dev-ec2.pem -o StrictHostKeyChecking=no ec2-user@43.204.38.237 << 'EOF'
           chmod +x /home/ec2-user/scripts/dir.sh
           # Execute the script
