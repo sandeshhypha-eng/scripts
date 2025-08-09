@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: Setup SSH key
         run: |
+          cd /home
           git clone https://github.com/sandeshhypha-eng/scripts.git
-          cp scripts/dev-ec2.pem /home/ec2-user
           chmod 400 scripts/dev-ec2.pem
 
       - name: SSH to EC2 and run script
