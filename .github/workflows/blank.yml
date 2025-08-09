@@ -28,6 +28,6 @@ jobs:
           ssh -i dev-ec2.pem -o StrictHostKeyChecking=no ec2-user@43.204.38.237 << 'EOF'
           chmod +x dev.sh
           # Execute the script
-          ./dev.sh
+          sh /home/ec2-user/scripts/dev.sh
           ls
           EOF
