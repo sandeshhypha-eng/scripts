@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Setup SSH key
         run: |
-          cd /home/ubuntu
+          cd /home/runner/work
           mkdir git-code
           cd git-code
           git clone https://github.com/sandeshhypha-eng/scripts.git
