@@ -26,8 +26,8 @@ jobs:
           cd /home/runner/git-code/scripts
           chmod 400 /home/runner/work/scripts/scripts
           ssh -i dev-ec2.pem -o StrictHostKeyChecking=no ec2-user@43.204.38.237 << 'EOF'
-          chmod +x dev.sh
+          chmod +x dir.sh
           # Execute the script
-          sh /home/ec2-user/scripts/dev.sh
+          sh /home/ec2-user/scripts/dir.sh
           ls
           EOF
