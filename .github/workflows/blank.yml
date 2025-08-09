@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Setup SSH key
         run: |
-          su -i
+          sudo su -i
           cd /home
           mkdir git-code
           cd git-code
