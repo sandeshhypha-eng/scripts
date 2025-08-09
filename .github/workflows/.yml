@@ -1,0 +1,42 @@
+name: Restart Nginx on EC2 Servers
+
+on:
+  workflow_dispatch:
+
+jobs:
+  restart-nginx:
+    runs-on: ubuntu-latest
+
+
+
+      - name: SSH into each server and restart nginx
+        env:
+          SSH_KEY: ${{ secrets.EC2_SSH_KEY }}   # Your PEM file contents stored in GitHub Secrets
+        run: |
+          # Create PEM file
+          echo "$SSH_KEY" > ec2-key.pem
+          chmod 600 ec2-key.pem
+
+          # List of servers
+          SERVERS=(
+            "ec2-usdsfaer@<IP-ADDRESS-1>"
+            "ec2-usser@<IP-ADDRESS-2>"
+            "ec2-user@<IP-ADDRESS-3>"
+            "ec2-user@<IP-ADDRESS-4>"
+            "ec2-user@<IP-ADDRESS-5>"
+          )
+
+          for SERVER in "${SERVERS[@]}"; do
+            echo "🔹 Restarting Nginx on $SERVER ..."
+            ssh -o StrictHostKeyChecking=no -i ec2-key.pem "$SERVER" << 'EOF'
+              sudo systemctl restart nginx
+              sleep 2
+              STATUS=$(systemctl is-active nginx)
+              if [ "$STATUS" = "active" ]; then
+                echo "✅ Nginx restarted successfully on $(hostname)"
+              else
+                echo "❌ Failed to restart Nginx on $(hostname)"
+                exit 1
+              fi
+            EOF
+          done
