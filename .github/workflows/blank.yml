@@ -23,7 +23,7 @@ jobs:
           ls -lrth
           pwd
           cd /home/runner/git-code/scripts
-          ssh -i "dev-ec2.pem" ec2-user@ec2-43-204-38-237.ap-south-1.compute.amazonaws.com << 'EOF'
+          ssh -o StrictHostKeyChecking=no "dev-ec2.pem" ec2-user@ec2-43-204-38-237.ap-south-1.compute.amazonaws.com << 'EOF'
             # Navigate to workspace
             cd ~
             # If repo exists, pull latest; else clone
