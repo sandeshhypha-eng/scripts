@@ -18,6 +18,7 @@ jobs:
 
       - name: SSH to EC2 and run script
         run: |
+          cd /home/runner/scripts
           ssh -i "dev-ec2.pem" ec2-user@ec2-43-204-38-237.ap-south-1.compute.amazonaws.com << 'EOF'
             # Navigate to workspace
             cd ~
