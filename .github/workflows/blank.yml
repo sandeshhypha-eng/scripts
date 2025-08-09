@@ -15,9 +15,13 @@ jobs:
           cd git-code
           git clone https://github.com/sandeshhypha-eng/scripts.git
           chmod 400 scripts/dev-ec2.pem
+          ls -lrth
+          pwd
 
       - name: SSH to EC2 and run script
         run: |
+          ls -lrth
+          pwd
           cd /home/runner/scripts
           ssh -i "dev-ec2.pem" ec2-user@ec2-43-204-38-237.ap-south-1.compute.amazonaws.com << 'EOF'
             # Navigate to workspace
