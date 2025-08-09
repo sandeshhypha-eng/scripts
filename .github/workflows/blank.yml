@@ -22,7 +22,6 @@ jobs:
         run: |
           ls -lrth
           pwd
-          chmod 400 /home/runner/work/scripts/scripts
           ssh -i dev-ec2.pem -o StrictHostKeyChecking=no ec2-user@43.204.38.237 << 'EOF'
           chmod +x /home/ec2-user/scripts/dir.sh
           # Execute the script
