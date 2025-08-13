@@ -1,35 +1,28 @@
-name: Deploy and Run Script on EC2
+name: SSH to EC2 and Run Script Nitil
 
 on:
-  workflow_dispatch: # Triggered manually - you can also set this to 'push' or 'pull_request' if needed
+  workflow_dispatch: # Trigger manually
 
 jobs:
-  run-script-on-ec2: # This is the name of the job
-    runs-on: ubuntu-latest # github action is going to all the actions on an ubuntu machine which it will get from ubuntu default.
+  run-script-on-ec2:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Configure SSH
-        run: git clone https://github.com/sandeshhypha-eng/scripts.git
-          cd scripts
-          echo "Setting up SSH for EC2"
-          mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 400 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+      - name: Setup SSH key
+        run: |
+          cd /home/runner
+          mkdir git-code
+          cd git-code
+          git clone https://github.com/sandeshhypha-eng/scripts.git
+          chmod 400 scripts/dev-ec2.pem
+          ls -lrth
+          pwd
 
-      - name: Checkout GitHub repo
-        uses: actions/checkout@v4
-
-      - name: SSH into EC2 and run script
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            cd /path/to/your/project
-            git reset --hard
-            git pull origin main
-            cd scripts
-            chmod +x script.sh
-            ./script.sh
+      - name: SSH to EC2 and run script
+        run: |
+          ssh -i /home/runner/git-code/scripts/dev-ec2.pem -o StrictHostKeyChecking=no ec2-user@43.204.38.237 << 'EOF'
+          chmod +x /home/ec2-user/scripts/dir.sh
+          # Execute the script
+          sh /home/ec2-user/scripts/dir.sh
+          ls
+          EOF
