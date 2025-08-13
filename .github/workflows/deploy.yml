@@ -1,7 +1,7 @@
-name: SSH to EC2 and Run Script Nitil
+name: SSH to EC2 and Run Script2
 
 on:
-  workflow_dispatch: # Trigger manually
+  pull_request:
 
 jobs:
   run-script-on-ec2:
@@ -15,7 +15,7 @@ jobs:
           cd git-code
           git clone https://github.com/sandeshhypha-eng/scripts.git
           chmod 400 scripts/dev-ec2.pem
-          ls -lrth
+          ls -lrt
           pwd
 
       - name: SSH to EC2 and run script
