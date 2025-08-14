@@ -3,7 +3,7 @@ name: Build and Deploy to EC2
 on:
   push:
     branches:
-      - dev
+      - java-code
 
 jobs:
   build-deploy:
@@ -14,7 +14,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: dev
+        ref: java-code
 
     # 2. Set up Java 17
     - name: Set up Java
