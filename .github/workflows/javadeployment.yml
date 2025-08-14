@@ -34,15 +34,14 @@ jobs:
     # 5. Deploy to EC2
     - name: Deploy to EC2
       env:
-        EC2_HOST: ${{ secrets.EC2_HOST }}
-        EC2_USER: EC2_USER 
+        EC2_HOST: 3.110.123.141
+        EC2_USER: EC2-USER 
         EC2_KEY: ${{ secrets.EC2_KEY }}
       run: |
-        echo "$EC2_KEY" > ec2-key.pem
-        chmod 600 ec2-key.pem
+        chmod 400 ec2-key.pem
 
         # Copy JAR file to EC2
-        scp -o StrictHostKeyChecking=no -i ec2-key.pem build/libs/*.jar $EC2_USER@$EC2_HOST:/home/$EC2_USER/my-java-app.jar
+        scp -o StrictHostKeyChecking=no -i ec2-key.pem build/libs/*.jar EC2-USER@3.110.123.141:/home/$EC2_USER/my-java-app.jar
 
         # Start app on EC2
         ssh -o StrictHostKeyChecking=no -i ec2-key.pem $EC2_USER@$EC2_HOST "
