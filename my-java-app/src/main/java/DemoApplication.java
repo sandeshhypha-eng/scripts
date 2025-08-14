@@ -15,6 +15,6 @@ public class DemoApplication {
 
     @GetMapping("/")
     public String hello() {
-        return "Hello from EC2 running on port 8001 deployed manully!";
+        return "Hello from EC2 running on port 8002 deployed githubaction!";
     }
 }
